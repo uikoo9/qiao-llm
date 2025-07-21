@@ -2,9 +2,11 @@
   "name": "test",
   "private": true,
   "scripts": {
-    "huoshan": "https_proxy= http_proxy= node huoshan.js"
+    "huoshan-normal": "https_proxy= http_proxy= node huoshan-normal.js",
+    "huoshan-llm": "https_proxy= http_proxy= node huoshan-llm.js"
   },
   "dependencies": {
-    "openai": "^5.10.1"
+    "openai": "^5.10.1",
+    "qiao-llm": "^0.0.1"
   }
 }
