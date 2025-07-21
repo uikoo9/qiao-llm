@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "private": true,
+  "scripts": {
+    "huoshan": "https_proxy= http_proxy= node index.js"
+  },
+  "dependencies": {
+    "openai": "^5.10.1"
+  }
+}

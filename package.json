@@ -18,7 +18,8 @@
     "check": "qpro ncu && lerna exec 'qpro ncu' --concurrency=1",
     "update": "qpro ncu u && lerna exec 'qpro ncu u' --concurrency=1",
     "pkg": "qpro pkg ./packages",
-    "dpkg": "qpro pkg ./packages dev"
+    "dpkg": "qpro pkg ./packages dev",
+    "test:huoshan": "npm run huoshan -w test"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
