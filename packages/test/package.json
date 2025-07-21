@@ -7,6 +7,7 @@
     "huoshan-translate": "https_proxy= http_proxy= node huoshan-translate.js"
   },
   "dependencies": {
+    "md-segmenter": "^0.0.4",
     "openai": "^5.10.1",
     "qiao-file": "^4.9.8",
     "qiao-llm": "^0.0.4"
