@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",
-  "sideEffets": false,
+  "sideEffects": false,
   "files": [
     "src"
   ],
@@ -19,7 +19,8 @@
     "build": "qpro rollup ./rollup.config.js"
   },
   "dependencies": {
-    "openai": "^5.10.1"
+    "openai": "^5.10.1",
+    "qiao.log.js": "^3.7.5"
   },
   "nx": {
     "namedInputs": {

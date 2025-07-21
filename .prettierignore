@@ -5,3 +5,5 @@ package-lock.json
 
 # packages
 __tests__
+/.nx/cache
+/.nx/workspace-data

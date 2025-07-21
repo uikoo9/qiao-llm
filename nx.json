@@ -8,11 +8,13 @@
       "dependsOn": ["build"]
     }
   },
-  "defaultBase": "master",
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "sharedGlobals": [],
-    "production": ["default"]
-  }
+  "targetDependencies": {
+    "build": [
+      {
+        "projects": "dependencies",
+        "target": "build"
+      }
+    ]
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
