@@ -1,0 +1,44 @@
+{
+  "name": "md-segmenter",
+  "version": "0.0.3",
+  "description": "Split Markdown documents into logical chunks while preserving code blocks, tables, lists, and other nested structures. Safely segment large MD files for processing/pagination without breaking syntax integrity, powered by AST-based parsing for accurate block-level handling.",
+  "author": "uikoo9 <uikoo9@qq.com>",
+  "homepage": "https://code.vincentqiao.com/#qiao-llm",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "src/index.js",
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uikoo9/qiao-llm.git"
+  },
+  "scripts": {
+    "build": "qpro rollup ./rollup.config.js",
+    "test": "ava"
+  },
+  "dependencies": {
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "unified": "^11.0.5"
+  },
+  "nx": {
+    "namedInputs": {
+      "default": [
+        "{projectRoot}/src/**/*"
+      ]
+    },
+    "targets": {
+      "build": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [
+          "{projectRoot}/index.js"
+        ]
+      }
+    }
+  }
+}
