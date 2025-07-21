@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "huoshan-normal": "https_proxy= http_proxy= node huoshan-normal.js",
-    "huoshan-llm": "https_proxy= http_proxy= node huoshan-llm.js"
+    "huoshan-llm": "https_proxy= http_proxy= node huoshan-llm.js",
+    "huoshan-translate": "https_proxy= http_proxy= node huoshan-translate.js"
   },
   "dependencies": {
     "openai": "^5.10.1",
