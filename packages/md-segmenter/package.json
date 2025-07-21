@@ -2,14 +2,28 @@
   "name": "md-segmenter",
   "version": "0.0.3",
   "description": "Split Markdown documents into logical chunks while preserving code blocks, tables, lists, and other nested structures. Safely segment large MD files for processing/pagination without breaking syntax integrity, powered by AST-based parsing for accurate block-level handling.",
+  "keywords": [
+    "markdown",
+    "ast",
+    "segmentation",
+    "nlp",
+    "text-processing"
+  ],
   "author": "uikoo9 <uikoo9@qq.com>",
   "homepage": "https://code.vincentqiao.com/#qiao-llm",
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./src/index.js"
+    }
+  },
   "sideEffects": false,
   "files": [
-    "src"
+    "src",
+    "index.js"
   ],
   "repository": {
     "type": "git",
