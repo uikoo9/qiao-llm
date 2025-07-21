@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "command": {
+    "version": {
+      "allowBranch": "main"
+    },
+    "publish": {
+      "allowBranch": "main",
+      "message": "chore(release): publish"
+    }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+}
