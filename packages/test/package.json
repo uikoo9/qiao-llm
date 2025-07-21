@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "openai": "^5.10.1",
+    "qiao-file": "^4.9.8",
     "qiao-llm": "^0.0.2"
   },
   "version": "0.0.2"
