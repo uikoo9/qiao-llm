@@ -27,6 +27,24 @@ var index = (options) => {
     }
   };
 
+  // chat with streaming
+  llm.chatWithStreaming = async (messages, model, callback) => {
+    try {
+      const stream = await llm.openai.chat.completions.create({
+        messages: messages,
+        model: model,
+        stream: true,
+      });
+
+      // callback
+      for await (const part of stream) {
+        callback(part.choices[0]?.delta?.content || '');
+      }
+    } catch (error) {
+      logger.error('llm.chat', 'error', error);
+    }
+  };
+
   //
   return llm;
 };

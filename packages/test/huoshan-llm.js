@@ -15,25 +15,16 @@ async function main() {
   ];
   const model = 'ep-20250702143944-jdbdc';
 
-  // Non-streaming:
-  console.log('----- standard request -----');
-  const res = await LLM.chat(messages, model);
-  console.log(res);
+  // // Non-streaming:
+  // console.log('----- standard request -----');
+  // const res = await LLM.chat(messages, model);
+  // console.log(res);
 
-  // // Streaming:
-  // console.log('----- streaming request -----');
-  // const stream = await openai.chat.completions.create({
-  //   messages: [
-  //     { role: 'system', content: '你是人工智能助手' },
-  //     { role: 'user', content: '常见的十字花科植物有哪些？' },
-  //   ],
-  //   model: 'ep-20250702143944-jdbdc',
-  //   stream: true,
-  // });
-  // for await (const part of stream) {
-  //   process.stdout.write(part.choices[0]?.delta?.content || '');
-  // }
-  // process.stdout.write('\n');
+  // Streaming:
+  console.log('----- streaming request -----');
+  await LLM.chatWithStreaming(messages, model, (msg) => {
+    console.log(msg);
+  });
 }
 
 main();
