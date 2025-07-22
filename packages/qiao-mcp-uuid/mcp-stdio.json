@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "qiao-mcp-uuid": {
+      "command": "npx",
+      "args": ["-y", "qiao-mcp-uuid"]
+    }
+  }
+}
