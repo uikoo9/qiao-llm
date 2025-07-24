@@ -47,7 +47,7 @@ const LLM = require('qiao-llm')({
   const toolFunctions = {
     get_city_weather: (args) => {
       try {
-        console.log(args);
+        console.log(`这里是大模型调用函数的参数：${args}`);
 
         const obj = JSON.parse(args);
         return `${obj.location}今天天气是晴天。`;
@@ -59,7 +59,7 @@ const LLM = require('qiao-llm')({
   };
 
   // Non-streaming:
-  console.log('----- standard request -----');
+  console.log(`提问大模型：${chatOptions.messages[1].content}`);
   const res = await LLM.chatWithTools(chatOptions, toolFunctions);
-  console.log(res);
+  console.log(`这里是大模型调用函数的最终回复：${res}`);
 })();
