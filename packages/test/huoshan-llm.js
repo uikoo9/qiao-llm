@@ -8,23 +8,26 @@ const LLM = llm({
 });
 
 // main
-async function main() {
-  const messages = [
-    { role: 'system', content: '你是人工智能助手' },
-    { role: 'user', content: '常见的十字花科植物有哪些？' },
-  ];
-  const model = 'ep-20250702143944-jdbdc';
+(async () => {
+  const chatOptions = {
+    model: 'ep-20250721164252-zzmtx',
+    messages: [
+      { role: 'system', content: '你是人工智能助手' },
+      { role: 'user', content: '常见的十字花科植物有哪些？' },
+    ],
+    thinking: {
+      type: 'disabled',
+    },
+  };
 
-  // // Non-streaming:
+  // Non-streaming:
   // console.log('----- standard request -----');
-  // const res = await LLM.chat(messages, model);
+  // const res = await LLM.chat(chatOptions);
   // console.log(res);
 
   // Streaming:
   console.log('----- streaming request -----');
-  await LLM.chatWithStreaming(messages, model, (msg) => {
+  await LLM.chatWithStreaming(chatOptions, (msg) => {
     console.log(msg);
   });
-}
-
-main();
+})();

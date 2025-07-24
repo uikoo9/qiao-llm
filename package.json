@@ -21,7 +21,8 @@
     "dpkg": "qpro pkg ./packages dev",
     "test:huoshan-normal": "npm run huoshan-normal -w test",
     "test:huoshan-llm": "npm run huoshan-llm -w test",
-    "test:huoshan-translate": "npm run huoshan-translate -w test"
+    "test:huoshan-translate": "npm run huoshan-translate -w test",
+    "test:huoshan-tools": "npm run huoshan-tools -w test"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
