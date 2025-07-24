@@ -1,6 +1,6 @@
 {
   "name": "md-segmenter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Split Markdown documents into logical chunks while preserving code blocks, tables, lists, and other nested structures. Safely segment large MD files for processing/pagination without breaking syntax integrity, powered by AST-based parsing for accurate block-level handling.",
   "keywords": [
     "markdown",
