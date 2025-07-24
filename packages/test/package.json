@@ -10,10 +10,10 @@
     "huoshan-dtools": "https_proxy= http_proxy= node huoshan-dtools.js"
   },
   "dependencies": {
-    "md-segmenter": "^0.0.5",
+    "md-segmenter": "^0.0.6",
     "openai": "^5.10.1",
     "qiao-file": "^4.9.8",
-    "qiao-llm": "^0.0.5"
+    "qiao-llm": "^0.0.6"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
