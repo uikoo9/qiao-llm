@@ -6,7 +6,8 @@
     "huoshan-llm": "https_proxy= http_proxy= node huoshan-llm.js",
     "huoshan-translate": "https_proxy= http_proxy= node huoshan-translate.js",
     "huoshan-tools": "https_proxy= http_proxy= node huoshan-tools.js",
-    "huoshan-qtools": "https_proxy= http_proxy= node huoshan-qtools.js"
+    "huoshan-qtools": "https_proxy= http_proxy= node huoshan-qtools.js",
+    "huoshan-dtools": "https_proxy= http_proxy= node huoshan-dtools.js"
   },
   "dependencies": {
     "md-segmenter": "^0.0.5",

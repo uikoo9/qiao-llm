@@ -23,7 +23,8 @@
     "test:huoshan-llm": "npm run huoshan-llm -w test",
     "test:huoshan-translate": "npm run huoshan-translate -w test",
     "test:huoshan-tools": "npm run huoshan-tools -w test",
-    "test:huoshan-qtools": "npm run huoshan-qtools -w test"
+    "test:huoshan-qtools": "npm run huoshan-qtools -w test",
+    "test:huoshan-dtools": "npm run huoshan-dtools -w test"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
