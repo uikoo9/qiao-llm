@@ -51,7 +51,7 @@ var index = (options) => {
       if (!toolFunction) return completionBegin.choices[0]?.message?.content;
 
       // go
-      const toolContent = toolFunction(toolCall.function?.arguments);
+      const toolContent = await toolFunction(toolCall.function?.arguments);
       chatOptions.messages.push(completionBegin.choices[0].message);
       chatOptions.messages.push({
         role: 'tool',
