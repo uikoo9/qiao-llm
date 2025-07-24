@@ -1,12 +1,6 @@
-// openai
-const OpenAI = require('openai');
-
-// config
-const config = require('./config.json');
-
-// openai
-const openai = new OpenAI({
-  apiKey: config.huoshan_key,
+// llm
+const LLM = require('qiao-llm')({
+  apiKey: require('./config.json').huoshan_key,
   baseURL: 'https://ark.cn-beijing.volces.com/api/v3',
 });
 
@@ -39,36 +33,26 @@ const openai = new OpenAI({
     { role: 'user', content: '给我推荐一个smallwod app中北京市的用户？' },
   ];
 
+  // chat options
+  const chatOptions = {
+    model: 'ep-20250721164252-zzmtx',
+    tools: tools,
+    messages: messages,
+    thinking: {
+      type: 'disabled',
+    },
+  };
+
+  // functions
+  const toolFunctions = {
+    get_smallwod_users: (args) => {
+      console.log(args);
+      return 'smallwod app中的北京市的用户推荐为wanghan';
+    },
+  };
+
   // Non-streaming:
   console.log('----- standard request -----');
-  const completion = await openai.chat.completions.create({
-    model: 'ep-20250721164252-zzmtx',
-    tools: tools,
-    messages: messages,
-    thinking: {
-      type: 'disabled',
-    },
-  });
-  console.log(completion.choices[0]);
-
-  // tools
-  const tool_call = completion.choices[0].message.tool_calls[0];
-  console.log(tool_call);
-  messages.push(completion.choices[0].message);
-  messages.push({
-    role: 'tool',
-    tool_call_id: tool_call.id,
-    content: '给你推荐smallwod app中北京市的用户是wanghan',
-  });
-
-  // go
-  const completionWithTool = await openai.chat.completions.create({
-    model: 'ep-20250721164252-zzmtx',
-    tools: tools,
-    messages: messages,
-    thinking: {
-      type: 'disabled',
-    },
-  });
-  console.log(completionWithTool.choices[0]);
+  const res = await LLM.chatWithTools(chatOptions, toolFunctions);
+  console.log(res);
 })();

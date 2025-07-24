@@ -6,22 +6,6 @@ var qiao_log_js = require('qiao.log.js');
 // openai
 const logger = qiao_log_js.Logger('qiao-llm');
 
-// const chatOptions = {
-//   model: 'ep-20250721164252-zzmtx',
-//   messages: [
-//     { role: 'system', content: '你是人工智能助手' },
-//     { role: 'user', content: '常见的十字花科植物有哪些？' },
-//   ],
-//   thinking: {
-//     // 不使用深度思考能力
-//     type: 'disabled',
-//     // 使用深度思考能力
-//     type: 'enabled',
-//     // 模型自行判断是否使用深度思考能力
-//     type: 'auto',
-//   },
-// };
-
 /**
  * qiao-llm
  */
@@ -52,6 +36,34 @@ var index = (options) => {
       }
     } catch (error) {
       logger.error('llm.chat', 'error', error);
+    }
+  };
+
+  // chat with tools
+  llm.chatWithTools = async (chatOptions, toolFunctions) => {
+    try {
+      // begin
+      const completionBegin = await llm.openai.chat.completions.create(chatOptions);
+
+      // tools
+      const toolCall = completionBegin.choices[0]?.message?.tool_calls[0];
+      const toolFunction = toolFunctions[toolCall.function?.name];
+      if (!toolFunction) return completionBegin.choices[0]?.message?.content;
+
+      // go
+      const toolContent = toolFunction(toolCall.function?.arguments);
+      chatOptions.messages.push(completionBegin.choices[0].message);
+      chatOptions.messages.push({
+        role: 'tool',
+        tool_call_id: toolCall.id,
+        content: toolContent,
+      });
+
+      // gogo
+      const completionWithTool = await llm.openai.chat.completions.create(chatOptions);
+      return completionWithTool.choices[0]?.message?.content;
+    } catch (error) {
+      logger.error('llm.chatWithTools', 'error', error);
     }
   };
 
