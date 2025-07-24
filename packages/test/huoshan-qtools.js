@@ -6,6 +6,12 @@ const LLM = require('qiao-llm')({
 
 // main
 (async () => {
+  // messages
+  const messages = [
+    { role: 'system', content: '你是人工智能助手' },
+    { role: 'user', content: '给我推荐一个smallwod app中北京市的用户？' },
+  ];
+
   // tools
   const tools = [
     {
@@ -27,17 +33,11 @@ const LLM = require('qiao-llm')({
     },
   ];
 
-  // messages
-  const messages = [
-    { role: 'system', content: '你是人工智能助手' },
-    { role: 'user', content: '给我推荐一个smallwod app中北京市的用户？' },
-  ];
-
   // chat options
   const chatOptions = {
     model: 'ep-20250721164252-zzmtx',
-    tools: tools,
     messages: messages,
+    tools: tools,
     thinking: {
       type: 'disabled',
     },
