@@ -7,3 +7,5 @@ package-lock.json
 __tests__
 /.nx/cache
 /.nx/workspace-data
+
+packages/md-segmenter/index.js
