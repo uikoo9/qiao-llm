@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "md-segmenter": "^0.0.7",
-    "openai": "^5.10.1",
-    "qiao-file": "^4.9.8",
+    "openai": "^5.10.2",
+    "qiao-file": "^5.0.0",
     "qiao-llm": "^0.0.7"
   },
   "version": "0.0.7"

@@ -1,31 +1,52 @@
-// path
-const path = require('path');
-
 // qiao
 const cli = require('qiao-cli');
-const qcos = require('../index.js');
+
+// db
+const DB = require('qiao-config');
+const db = DB();
 
 /**
- * upload file
- * @param {*} configPath
- * @param {*} filePath
- * @param {*} bucketPath
+ * add
  */
-const uploadFile = async (configPath, filePath, bucketPath) => {
+const add = async () => {
   try {
-    const cwd = process.cwd();
-    if (configPath.startsWith('./') || configPath.startsWith('../')) configPath = path.resolve(cwd, configPath);
-    if (filePath.startsWith('./') || filePath.startsWith('../')) filePath = path.resolve(cwd, filePath);
+    // q a
+    const questions = [
+      {
+        type: 'input',
+        name: 'modelName',
+        message: '请输入模型名称：',
+      },
+      {
+        type: 'input',
+        name: 'apiKey',
+        message: '请输入apiKey：',
+      },
+      {
+        type: 'input',
+        name: 'baseURL',
+        message: '请输入baseURL：',
+      },
+    ];
+    const answers = await cli.ask(questions);
 
-    const app = qcos(require(configPath));
-    const rs = await app.uploadFile(bucketPath, filePath);
+    // check
+    const dbKey = answers.modelName;
+    const dbValue = await db.config(dbKey);
+    if (dbValue) {
+      console.log('模型名称已经存在，请换一个模型名称。');
+      return;
+    }
 
-    console.log('upload file to tencent cos success!');
-    console.log();
+    // set
+    await db.config(dbKey, answers);
+    console.log('模型已添加，目前记录的模型信息有：');
 
-    console.log(rs);
+    // list
+    const all = await db.all();
+    console.log(all);
   } catch (e) {
-    console.log('upload file to tencent cos fail!');
+    console.log('设置模型出错。');
     console.log();
 
     console.log(e);
@@ -33,8 +54,4 @@ const uploadFile = async (configPath, filePath, bucketPath) => {
 };
 
 // cmd for file
-cli.cmd
-  .command('file <configPath> <filePath> <bucketPath>')
-  .alias('fi')
-  .description('upload file to tencent cos bucket')
-  .action(uploadFile);
+cli.cmd.command('add').description('添加一个模型').action(add);

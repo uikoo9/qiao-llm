@@ -5,4 +5,4 @@ const cli = require('qiao-cli');
 cli.cmd
   .version(require('../package.json').version, '-v, --version')
   .description('qiao-llm-cli, llm cli tool')
-  .usage('<command> [options]');
+  .usage('<command>');

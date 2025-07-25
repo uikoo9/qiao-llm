@@ -19,7 +19,7 @@
     "build": "qpro rollup ./rollup.config.js"
   },
   "dependencies": {
-    "openai": "^5.10.1",
+    "openai": "^5.10.2",
     "qiao.log.js": "^3.7.5"
   },
   "nx": {
