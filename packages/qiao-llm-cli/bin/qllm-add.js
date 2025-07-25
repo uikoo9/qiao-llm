@@ -40,6 +40,7 @@ const add = async () => {
       },
     ];
     const answers = await cli.ask(questions);
+    console.log();
 
     // check
     const dbKey = answers.modelName;
@@ -59,7 +60,6 @@ const add = async () => {
   } catch (e) {
     console.log('设置模型出错。');
     console.log();
-
     console.log(e);
   }
 };
