@@ -1,0 +1,48 @@
+{
+  "name": "qiao-llm-cli",
+  "version": "0.0.7",
+  "description": "llm cli tool",
+  "author": "uikoo9 <uikoo9@qq.com>",
+  "homepage": "https://code.vincentqiao.com/#qiao-llm-cli",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "src/index.js",
+  "sideEffets": false,
+  "files": [
+    "bin",
+    "src"
+  ],
+  "bin": {
+    "qllm": "./bin/qllm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uikoo9/qiao-llm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uikoo9/qiao-llm/issues"
+  },
+  "scripts": {
+    "build": "qpro rollup ./rollup.config.js"
+  },
+  "dependencies": {
+    "qiao-cli": "^4.7.2"
+  },
+  "nx": {
+    "namedInputs": {
+      "default": [
+        "{projectRoot}/src/**/*"
+      ]
+    },
+    "targets": {
+      "build": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [
+          "{projectRoot}/index.js"
+        ]
+      }
+    }
+  }
+}
