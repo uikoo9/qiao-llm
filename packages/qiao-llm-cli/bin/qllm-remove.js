@@ -36,5 +36,5 @@ const remove = async () => {
   }
 };
 
-// cmd for file
+// cmd
 cli.cmd.command('remove').description('删除一个模型').action(remove);

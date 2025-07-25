@@ -27,6 +27,17 @@ const add = async () => {
         name: 'baseURL',
         message: '请输入baseURL：',
       },
+      {
+        type: 'input',
+        name: 'modelID',
+        message: '请输入模型ID：',
+      },
+      {
+        type: 'list',
+        name: 'modelThinking',
+        message: '是否启动思考模式：',
+        choices: ['enabled', 'disabled', 'auto'],
+      },
     ];
     const answers = await cli.ask(questions);
 
@@ -53,5 +64,5 @@ const add = async () => {
   }
 };
 
-// cmd for file
+// cmd
 cli.cmd.command('add').description('添加一个模型').action(add);

@@ -21,5 +21,5 @@ const list = async () => {
   }
 };
 
-// cmd for file
+// cmd
 cli.cmd.command('list').description('列出目前记录的模型信息').action(list);
