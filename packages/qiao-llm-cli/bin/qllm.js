@@ -5,6 +5,7 @@ const cli = require('qiao-cli');
 
 // cmds
 require('./qllm-add.js');
+require('./qllm-list.js');
 require('./qllm-version.js');
 
 // parse
