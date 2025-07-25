@@ -1,5 +1,5 @@
-// qiao-cos
-import COS from 'qiao-cos';
+// qiao-llm
+import LLM from 'qiao-llm';
 
 // e
-export default COS;
+export default LLM;

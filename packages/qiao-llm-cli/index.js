@@ -1,7 +1,7 @@
 'use strict';
 
-var COS = require('qiao-cos');
+var LLM = require('qiao-llm');
 
-// qiao-cos
+// qiao-llm
 
-module.exports = COS;
+module.exports = LLM;
