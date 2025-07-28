@@ -1,6 +1,6 @@
 {
   "name": "qiao-llm-cli",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "llm cli tool",
   "author": "uikoo9 <uikoo9@qq.com>",
   "homepage": "https://code.vincentqiao.com/#qiao-llm-cli",
@@ -28,7 +28,7 @@
   "dependencies": {
     "qiao-cli": "^5.0.0",
     "qiao-config": "^5.0.0",
-    "qiao-llm": "^0.0.9"
+    "qiao-llm": "^0.1.0"
   },
   "nx": {
     "namedInputs": {
