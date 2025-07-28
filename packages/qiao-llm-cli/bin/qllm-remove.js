@@ -2,8 +2,8 @@
 const cli = require('qiao-cli');
 
 // db
-const DB = require('qiao-config');
-const db = DB();
+const { getDB } = require('./util.js');
+const db = getDB();
 
 /**
  * remove
