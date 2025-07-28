@@ -50,9 +50,15 @@ const chat = async (modelName) => {
     };
 
     // go
-    await llm.chatWithStreaming(chatOptions, (msg) => {
-      process.stdout.write(msg);
-    });
+    await llm.chatWithStreaming(
+      chatOptions,
+      (msg) => {
+        process.stdout.write(msg);
+      },
+      (msg) => {
+        process.stdout.write(msg);
+      },
+    );
   } catch (e) {
     console.log('模型chat出错。');
     console.log();

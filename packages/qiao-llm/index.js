@@ -25,14 +25,18 @@ var index = (options) => {
   };
 
   // chat with streaming
-  llm.chatWithStreaming = async (chatOptions, callback) => {
+  llm.chatWithStreaming = async (chatOptions, callback, thinkingCallback) => {
     try {
       chatOptions.stream = true;
       const stream = await llm.openai.chat.completions.create(chatOptions);
 
       // callback
       for await (const part of stream) {
-        callback(part.choices[0]?.delta?.content || '');
+        const thinkingContent = part.choices[0]?.delta?.reasoning_content;
+        if (thinkingContent && thinkingCallback) thinkingCallback(part.choices[0]?.delta?.reasoning_content);
+
+        const content = part.choices[0]?.delta?.content;
+        if (content && callback) callback(part.choices[0]?.delta?.content);
       }
     } catch (error) {
       logger.error('llm.chat', 'error', error);

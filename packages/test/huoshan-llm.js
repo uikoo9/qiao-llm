@@ -27,7 +27,13 @@ const LLM = llm({
 
   // Streaming:
   console.log('----- streaming request -----');
-  await LLM.chatWithStreaming(chatOptions, (msg) => {
-    console.log(msg);
-  });
+  await LLM.chatWithStreaming(
+    chatOptions,
+    (msg) => {
+      console.log(msg);
+    },
+    (msg) => {
+      console.log(msg);
+    },
+  );
 })();

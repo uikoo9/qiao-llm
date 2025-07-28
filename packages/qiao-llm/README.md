@@ -88,6 +88,9 @@ return await LLM.chat(chatOptions);
 - callback
   - 类型: function
   - 说明: 流式返回的对话消息
+- thinkingCallback
+  - 类型: function
+  - 说明: 流式返回的思考过程消息
 
 ```javascript
 // chat options
@@ -103,9 +106,15 @@ const chatOptions = {
 };
 
 // go
-await LLM.chatWithStreaming(chatOptions, (msg) => {
-  console.log(msg);
-});
+await LLM.chatWithStreaming(
+  chatOptions,
+  (msg) => {
+    console.log(msg);
+  },
+  (msg) => {
+    console.log(msg);
+  },
+);
 ```
 
 ### chatWithTools
