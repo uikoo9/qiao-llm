@@ -30,7 +30,7 @@ const chat = async (modelName) => {
     // ask
     const questions = [
       {
-        type: 'input',
+        type: 'editor',
         name: 'content',
         message: '请输入你的问题：',
       },
