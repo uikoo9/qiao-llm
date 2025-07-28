@@ -43,6 +43,6 @@ async function translate(translatePrompt, mdContent) {
     console.log(`====${i}====`);
     console.log(mdContent);
     console.log('====after====');
-    console.log(translateRes);
+    console.log(translateRes.content);
   }
 })();

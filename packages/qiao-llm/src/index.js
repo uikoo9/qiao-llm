@@ -17,7 +17,7 @@ export default (options) => {
   llm.chat = async (chatOptions) => {
     try {
       const completion = await llm.openai.chat.completions.create(chatOptions);
-      return completion.choices[0]?.message?.content;
+      return completion.choices[0]?.message;
     } catch (error) {
       logger.error('llm.chat', 'error', error);
     }

@@ -28,5 +28,5 @@ const LLM = require('qiao-llm')({
   // Non-streaming:
   console.log('----- standard request -----');
   const res = await LLM.chat(chatOptions);
-  console.log(res);
+  console.log(res.content);
 })();

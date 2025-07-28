@@ -52,7 +52,7 @@ const LLM = QiaoLLM(options);
   - 类型: array
   - 说明: 对话消息
 - return
-  - 类型: string
+  - 类型: object
   - 说明: 返回的消息
 
 ```javascript
