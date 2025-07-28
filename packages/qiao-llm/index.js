@@ -31,12 +31,31 @@ var index = (options) => {
       const stream = await llm.openai.chat.completions.create(chatOptions);
 
       // callback
+      let firstThinking = true;
+      let firstContent = true;
       for await (const part of stream) {
         const thinkingContent = part.choices[0]?.delta?.reasoning_content;
-        if (thinkingContent && thinkingCallback) thinkingCallback(part.choices[0]?.delta?.reasoning_content);
+        if (thinkingContent && thinkingCallback) {
+          if (firstThinking) {
+            console.log();
+            console.log('====思考中====');
+            console.log();
+            firstThinking = false;
+          }
+
+          thinkingCallback(part.choices[0]?.delta?.reasoning_content);
+        }
 
         const content = part.choices[0]?.delta?.content;
-        if (content && callback) callback(part.choices[0]?.delta?.content);
+        if (content && callback) {
+          if (firstContent) {
+            console.log();
+            console.log('====回复中====');
+            console.log();
+            firstContent = false;
+          }
+          callback(part.choices[0]?.delta?.content);
+        }
       }
     } catch (error) {
       logger.error('llm.chat', 'error', error);
