@@ -19,17 +19,19 @@ const remove = async () => {
       },
     ];
     const answers = await cli.ask(questions);
+    console.log();
 
     // del
     const dbKey = answers.modelName;
     await db.config(dbKey, null);
-    console.log('模型已删除。');
+    console.log(cli.colors.blue('模型已删除。'));
+    console.log();
 
     // list
     const all = await db.all();
     console.log(all);
   } catch (e) {
-    console.log('删除模型出错。');
+    console.log(cli.colors.red('删除模型出错。'));
     console.log();
 
     console.log(e);

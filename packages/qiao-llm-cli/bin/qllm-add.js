@@ -46,19 +46,20 @@ const add = async () => {
     const dbKey = answers.modelName;
     const dbValue = await db.config(dbKey);
     if (dbValue) {
-      console.log('模型名称已经存在，请换一个模型名称。');
+      console.log(cli.colors.red('模型名称已经存在，请换一个模型名称。'));
       return;
     }
 
     // set
     await db.config(dbKey, answers);
-    console.log('模型已添加，目前记录的模型信息有：');
+    console.log(cli.colors.blue('模型已添加，目前记录的模型信息有：'));
+    console.log();
 
     // list
     const all = await db.all();
     console.log(all);
   } catch (e) {
-    console.log('设置模型出错。');
+    console.log(cli.colors.red('设置模型出错。'));
     console.log();
     console.log(e);
   }

@@ -17,7 +17,7 @@ const chat = async (modelName) => {
     // check
     const model = await db.config(modelName);
     if (!model) {
-      console.log(`这个模型不存在：${modelName}`);
+      console.log(cli.colors.red(`这个模型不存在：${modelName}`));
       return;
     }
 
@@ -60,7 +60,7 @@ const chat = async (modelName) => {
       },
     );
   } catch (e) {
-    console.log('模型chat出错。');
+    console.log(cli.colors.red('模型chat出错。'));
     console.log();
 
     console.log(e);
