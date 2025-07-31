@@ -25,16 +25,17 @@ export default (options) => {
 
   // chat with streaming
   llm.chatWithStreaming = async (chatOptions, callbakOptions) => {
+    // callback
+    const thinkingCallback = callbakOptions.thinkingCallback;
+    const firstThinkingCallback = callbakOptions.firstThinkingCallback;
+    const contentCallback = callbakOptions.contentCallback;
+    const firstContentCallback = callbakOptions.firstContentCallback;
+    const endCallback = callbakOptions.endCallback;
+    const errorCallback = callbakOptions.errorCallback;
+
     try {
       chatOptions.stream = true;
       const stream = await llm.openai.chat.completions.create(chatOptions);
-
-      // callback
-      const thinkingCallback = callbakOptions.thinkingCallback;
-      const firstThinkingCallback = callbakOptions.firstThinkingCallback;
-      const contentCallback = callbakOptions.contentCallback;
-      const firstContentCallback = callbakOptions.firstContentCallback;
-      const endCallback = callbakOptions.endCallback;
 
       // go
       let firstThinking = true;
@@ -43,29 +44,30 @@ export default (options) => {
         // thinking
         const thinkingContent = part.choices[0]?.delta?.reasoning_content;
         if (thinkingContent && thinkingCallback) {
-          if (firstThinking) {
+          if (firstThinking && firstThinkingCallback) {
             firstThinking = false;
-            if (firstThinkingCallback) firstThinkingCallback();
+            firstThinkingCallback();
           }
 
-          thinkingCallback(part.choices[0]?.delta?.reasoning_content);
+          thinkingCallback(thinkingContent);
         }
 
         // content
         const content = part.choices[0]?.delta?.content;
         if (content && contentCallback) {
-          if (firstContent) {
+          if (firstContent && firstContentCallback) {
             firstContent = false;
-            if (firstContentCallback) firstContentCallback();
+            firstContentCallback();
           }
-          contentCallback(part.choices[0]?.delta?.content);
+
+          contentCallback(content);
         }
       }
 
       // end
       if (endCallback) endCallback();
     } catch (error) {
-      logger.error('llm.chat', 'error', error);
+      if (errorCallback) errorCallback(error);
     }
   };
 
