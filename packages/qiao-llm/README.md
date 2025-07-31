@@ -105,16 +105,27 @@ const chatOptions = {
   },
 };
 
+// callback options
+const callbackOptions = {
+  firstThinkingCallback: () => {
+    console.log('begin thinking');
+  },
+  thinkingCallback: (msg) => {
+    console.log(msg);
+  },
+  firstContentCallback: () => {
+    console.log('begin content');
+  },
+  contentCallback: (msg) => {
+    console.log(msg);
+  },
+  endCallback: () => {
+    console.log('end chat');
+  },
+};
+
 // go
-await LLM.chatWithStreaming(
-  chatOptions,
-  (msg) => {
-    console.log(msg);
-  },
-  (msg) => {
-    console.log(msg);
-  },
-);
+await LLM.chatWithStreaming(chatOptions, callbackOptions);
 ```
 
 ### chatWithTools

@@ -49,16 +49,32 @@ const chat = async (modelName) => {
       },
     };
 
-    // go
-    await llm.chatWithStreaming(
-      chatOptions,
-      (msg) => {
-        process.stdout.write(msg);
+    // callback options
+    const callbackOptions = {
+      firstThinkingCallback: () => {
+        console.log();
+        console.log(cli.colors.gray('===begin thinking==='));
+        console.log();
       },
-      (msg) => {
+      thinkingCallback: (msg) => {
         process.stdout.write(cli.colors.gray(msg));
       },
-    );
+      firstContentCallback: () => {
+        console.log();
+        console.log('===begin content===');
+        console.log();
+      },
+      contentCallback: (msg) => {
+        process.stdout.write(msg);
+      },
+      endCallback: () => {
+        console.log();
+        console.log('end chat');
+      },
+    };
+
+    // go
+    await llm.chatWithStreaming(chatOptions, callbackOptions);
   } catch (e) {
     console.log(cli.colors.red('模型chat出错。'));
     console.log();

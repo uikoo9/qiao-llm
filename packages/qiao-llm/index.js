@@ -25,38 +25,46 @@ var index = (options) => {
   };
 
   // chat with streaming
-  llm.chatWithStreaming = async (chatOptions, callback, thinkingCallback) => {
+  llm.chatWithStreaming = async (chatOptions, callbakOptions) => {
     try {
       chatOptions.stream = true;
       const stream = await llm.openai.chat.completions.create(chatOptions);
 
       // callback
+      const thinkingCallback = callbakOptions.thinkingCallback;
+      const firstThinkingCallback = callbakOptions.firstThinkingCallback;
+      const contentCallback = callbakOptions.contentCallback;
+      const firstContentCallback = callbakOptions.firstContentCallback;
+      const endCallback = callbakOptions.endCallback;
+
+      // go
       let firstThinking = true;
       let firstContent = true;
       for await (const part of stream) {
+        // thinking
         const thinkingContent = part.choices[0]?.delta?.reasoning_content;
         if (thinkingContent && thinkingCallback) {
           if (firstThinking) {
-            console.log();
-            thinkingCallback('====思考中====');
-            console.log();
             firstThinking = false;
+            if (firstThinkingCallback) firstThinkingCallback();
           }
 
           thinkingCallback(part.choices[0]?.delta?.reasoning_content);
         }
 
+        // content
         const content = part.choices[0]?.delta?.content;
-        if (content && callback) {
+        if (content && contentCallback) {
           if (firstContent) {
-            console.log();
-            callback('====回复中====');
-            console.log();
             firstContent = false;
+            if (firstContentCallback) firstContentCallback();
           }
-          callback(part.choices[0]?.delta?.content);
+          contentCallback(part.choices[0]?.delta?.content);
         }
       }
+
+      // end
+      if (endCallback) endCallback();
     } catch (error) {
       logger.error('llm.chat', 'error', error);
     }

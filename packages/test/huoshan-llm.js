@@ -25,15 +25,26 @@ const LLM = llm({
   // const res = await LLM.chat(chatOptions);
   // console.log(res.content);
 
+  // callback options
+  const callbackOptions = {
+    firstThinkingCallback: () => {
+      console.log('begin thinking');
+    },
+    thinkingCallback: (msg) => {
+      console.log(msg);
+    },
+    firstContentCallback: () => {
+      console.log('begin content');
+    },
+    contentCallback: (msg) => {
+      console.log(msg);
+    },
+    endCallback: () => {
+      console.log('end chat');
+    },
+  };
+
   // Streaming:
   console.log('----- streaming request -----');
-  await LLM.chatWithStreaming(
-    chatOptions,
-    (msg) => {
-      console.log(msg);
-    },
-    (msg) => {
-      console.log(msg);
-    },
-  );
+  await LLM.chatWithStreaming(chatOptions, callbackOptions);
 })();
