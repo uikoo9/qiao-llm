@@ -37,7 +37,7 @@ export default (options) => {
         if (thinkingContent && thinkingCallback) {
           if (firstThinking) {
             console.log();
-            console.log('====思考中====');
+            thinkingCallback('====思考中====');
             console.log();
             firstThinking = false;
           }
@@ -49,7 +49,7 @@ export default (options) => {
         if (content && callback) {
           if (firstContent) {
             console.log();
-            console.log('====回复中====');
+            callback('====回复中====');
             console.log();
             firstContent = false;
           }

@@ -56,7 +56,7 @@ const chat = async (modelName) => {
         process.stdout.write(msg);
       },
       (msg) => {
-        process.stdout.write(msg);
+        process.stdout.write(cli.colors.gray(msg));
       },
     );
   } catch (e) {
