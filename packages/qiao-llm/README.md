@@ -107,6 +107,15 @@ const chatOptions = {
 
 // callback options
 const callbackOptions = {
+  beginCallback: () => {
+    console.log('begin chat');
+  },
+  endCallback: () => {
+    console.log('end chat');
+  },
+  errorCallback: (error) => {
+    console.log(error);
+  },
   firstThinkingCallback: () => {
     console.log('begin thinking');
   },
@@ -118,9 +127,6 @@ const callbackOptions = {
   },
   contentCallback: (msg) => {
     console.log(msg);
-  },
-  endCallback: () => {
-    console.log('end chat');
   },
 };
 

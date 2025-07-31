@@ -27,16 +27,18 @@ var index = (options) => {
   // chat with streaming
   llm.chatWithStreaming = async (chatOptions, callbakOptions) => {
     // callback
+    const beginCallback = callbakOptions.beginCallback;
+    const endCallback = callbakOptions.endCallback;
+    const errorCallback = callbakOptions.errorCallback;
     const thinkingCallback = callbakOptions.thinkingCallback;
     const firstThinkingCallback = callbakOptions.firstThinkingCallback;
     const contentCallback = callbakOptions.contentCallback;
     const firstContentCallback = callbakOptions.firstContentCallback;
-    const endCallback = callbakOptions.endCallback;
-    const errorCallback = callbakOptions.errorCallback;
 
     try {
       chatOptions.stream = true;
       const stream = await llm.openai.chat.completions.create(chatOptions);
+      if (beginCallback) beginCallback();
 
       // go
       let firstThinking = true;
