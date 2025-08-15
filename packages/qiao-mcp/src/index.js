@@ -28,7 +28,13 @@ export const getMCPHTTPClient = async (options) => {
   // connect
   try {
     const transport = new StreamableHTTPClientTransport(new URL(mcpUrl));
-    return await client.connect(transport);
+    await client.connect(transport);
+
+    // r
+    return {
+      client,
+      transport,
+    };
   } catch (error) {
     if (mcpOnError) mcpOnError(error);
   }
