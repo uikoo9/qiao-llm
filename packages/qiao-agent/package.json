@@ -1,6 +1,6 @@
 {
   "name": "qiao-agent",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "llm agents",
   "author": "uikoo9 <uikoo9@qq.com>",
   "homepage": "https://code.vincentqiao.com/#qiao-agent",
@@ -19,7 +19,7 @@
     "build": "qpro rollup ./rollup.config.js"
   },
   "dependencies": {
-    "qiao-llm": "^0.1.8"
+    "qiao-llm": "^0.2.0"
   },
   "nx": {
     "namedInputs": {
