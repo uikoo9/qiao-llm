@@ -146,9 +146,7 @@ const genChart = async (llmConfig, userPrompt, mcpUrl) => {
   // parse tool
   let toolObj;
   try {
-    const toolContent = toolRes.content;
-    const toolJson = JSON.parse(toolContent);
-    toolObj = toolJson[0];
+    toolObj = JSON.parse(toolRes.content);
     logger.info(methodName, 'toolObj', toolObj);
   } catch (error) {
     logger.warn(methodName, 'parse tool fail');
@@ -170,20 +168,24 @@ const genChart = async (llmConfig, userPrompt, mcpUrl) => {
       logger.warn(methodName, 'mcpOnError', error);
     },
   });
-  logger.info(methodName, 'mcpClient init ok');
 
   // mcp run
-  const result = await mcpClient.client.callTool({
-    name: toolObj.name,
-    arguments: toolObj.parameters,
-  });
-  logger.info(methodName, 'result', result);
+  try {
+    const result = await mcpClient.client.callTool({
+      name: toolObj.name,
+      arguments: toolObj.parameters,
+    });
+    logger.info(methodName, 'result', result);
 
-  // close
-  await mcpClient.client.close();
+    // close
+    await mcpClient.client.close();
 
-  // r
-  return result;
+    // r
+    return result;
+  } catch (error) {
+    logger.warn(methodName, 'mcp call tool fail');
+    logger.error(methodName, error);
+  }
 };
 
 exports.genChart = genChart;
