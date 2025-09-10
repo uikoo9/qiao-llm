@@ -65,7 +65,7 @@ export const genChart = async (llmConfig, userPrompt, mcpUrl) => {
   });
 
   // chat options
-  const systemPromptPath = path.resolve(__dirname, './propmt/prompt-chart.md');
+  const systemPromptPath = path.resolve(__dirname, './prompt/prompt-chart.md');
   const systemPrompt = await readFile(systemPromptPath);
   if (!systemPrompt) {
     logger.warn(methodName, 'read system prompt error');
