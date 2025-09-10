@@ -9,7 +9,8 @@
   "module": "src/index.js",
   "sideEffects": false,
   "files": [
-    "src"
+    "src",
+    "prompt"
   ],
   "repository": {
     "type": "git",

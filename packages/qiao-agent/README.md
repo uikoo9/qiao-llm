@@ -70,3 +70,36 @@ await translateToZH(config, content);
 ```javascript
 await translateToEN(config, content);
 ```
+
+### genChart
+
+生成图表
+
+- llmConfig
+  - 类型: object
+  - 说明: 大模型相关参数
+- llmConfig.apiKey
+  - 类型: string
+  - 说明: apiKey
+- llmConfig.baseURL
+  - 类型: string
+  - 说明: baseURL
+- llmConfig.modelId
+  - 类型: string
+  - 说明: modelId
+- llmConfig.modelThinking
+  - 类型: string
+  - 说明: modelThinking
+- userPrompt
+  - 类型: string
+  - 说明: 用户提示词
+- mcpUrl
+  - 类型: string
+  - 说明: mcp url
+- return
+  - 类型: object
+  - 说明: 生成图表的信息
+
+```javascript
+await genChart(llmConfig, userPrompt, mcpUrl);
+```
