@@ -19,7 +19,7 @@
     "build": "qpro rollup ./rollup.config.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.3"
+    "@modelcontextprotocol/sdk": "^1.18.1"
   },
   "nx": {
     "namedInputs": {

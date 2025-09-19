@@ -31,9 +31,9 @@
     "@commitlint/config-conventional": "^19.8.1",
     "ava": "^6.4.1",
     "husky": "^9.1.7",
-    "lerna": "^8.2.3",
-    "lint-staged": "^16.1.2",
+    "lerna": "^8.2.4",
+    "lint-staged": "^16.1.6",
     "nx": "^20.7.2",
-    "qiao-project": "^5.0.0"
+    "qiao-project": "^5.0.2"
   }
 }
